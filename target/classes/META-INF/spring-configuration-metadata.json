@@ -1,0 +1,11 @@
+{
+  "groups": [
+    {
+      "name": "app",
+      "type": "com.kyn.googlefacebook.login.configuration.AppProperties",
+      "sourceType": "com.kyn.googlefacebook.login.configuration.AppProperties"
+    }
+  ],
+  "properties": [],
+  "hints": []
+}
