@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import {Route, Switch} from 'react-router-dom';
 import AppHeader from '../app/AppHeader';
+import AppFooter from '../app/AppFooter';
 import Home from '../home/Home';
 import Login from '../user/login/Login';
 import Signup from '../user/signup/Signup';
 import Profile from '../user/profile/Profile';
+import aboutUs from '../user/about-us/aboutUs';
 import OAuth2RedirectHandler from '../user/oauth2/OAuth2RedirectHandler';
 import NotFound from '../app/NotFound';
 import LoadingIndicator from '../app/LoadingIndicator';
@@ -14,6 +16,9 @@ import Alert from 'react-s-alert';
 import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 import './App.css';
+import contactUs from '../user/contact-us/contactUs';
+import terms from '../user/terms/terms';
+import stores from '../user/stores/store';
 
 export const ACCESS_TOKEN = 'accessToken';
 
@@ -77,18 +82,36 @@ class App extends Component {
             <Route exact path="/" component={Home}></Route>           
             <PrivateRoute path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
               component={Profile}></PrivateRoute>
+            <PrivateRoute path="/about" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
+              component={aboutUs}></PrivateRoute>
+            <PrivateRoute path="/contact" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
+              component={contactUs}></PrivateRoute>
+            <PrivateRoute path="/stores" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
+              component={stores}></PrivateRoute>
             <Route path="/login"
               render={(props) => <Login authenticated={this.state.authenticated} {...props} />}></Route>
             <Route path="/signup"
               render={(props) => <Signup authenticated={this.state.authenticated} {...props} />}></Route>
             <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>  
-            <Route component={NotFound}></Route>
+            
           </Switch>
         </div>
+        <AppFooter/>
+        <switch>
+        <div className="app-body">
+          <Switch>
+            <Route exact path="/terms" component={terms}></Route>           
+          </Switch>
+        </div>
+        </switch>
+        
+          
         <Alert stack={{limit: 3}} 
           timeout = {3000}
           position='top-right' effect='slide' offset={65} />
+         
       </div>
+      
     );
   }
 }
